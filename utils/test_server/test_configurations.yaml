@@ -1,0 +1,69 @@
+#   Copyright (C) 2013-2014 Computer Sciences Corporation
+#
+#   Licensed under the Apache License, Version 2.0 (the "License");
+#   you may not use this file except in compliance with the License.
+#   You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+#   Unless required by applicable law or agreed to in writing, software
+#   distributed under the License is distributed on an "AS IS" BASIS,
+#   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#   See the License for the specific language governing permissions and
+#   limitations under the License.
+
+# 'isWebSocket' is set to true if the test app supports WebSocket
+# 'uploadFileSize' is in Megabytes. If uploadFileSize is zero,
+#     http context's client_max_body_size is used.
+1:
+    FullUserFacingUrl: ""
+    UserFacingUrlPrefix: ""
+    UserFacingUrlSuffix: app1/
+    AppName: App1
+    UpstreamPort: 31231
+    UpstreamPath: app1
+    timeout: 10
+    timeoutTries: 3
+    isWebSocket: true
+    uploadFileSize: 2
+    sticky: false
+    disableChunkedTransferEncoding: false
+2:
+    FullUserFacingUrl: ""
+    UserFacingUrlPrefix: ""
+    UserFacingUrlSuffix: app2/
+    AppName: App2
+    UpstreamPort: 31232
+    UpstreamPath: app2
+    timeout: 15
+    timeoutTries: 4
+    isWebSocket: true 
+    uploadFileSize: 2
+    sticky: true
+    disableChunkedTransferEncoding: false
+3:
+    FullUserFacingUrl: ""
+    UserFacingUrlPrefix: ""
+    UserFacingUrlSuffix: app3/
+    AppName: App3
+    UpstreamPort: 31233
+    UpstreamPath: App3
+    timeout: 20
+    timeoutTries: 5
+    isWebSocket: false
+    uploadFileSize: 2
+    sticky: true
+    disableChunkedTransferEncoding: false
+4:
+    FullUserFacingUrl: ""
+    UserFacingUrlPrefix: ""
+    UserFacingUrlSuffix: app4/
+    AppName: App4
+    UpstreamPort: 31234
+    UpstreamPath: App4
+    timeout: 25
+    timeoutTries: 6
+    isWebSocket: false
+    uploadFileSize: 2
+    sticky: false
+    disableChunkedTransferEncoding: true

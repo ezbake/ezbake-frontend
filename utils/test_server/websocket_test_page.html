@@ -1,0 +1,93 @@
+<!--   Copyright (C) 2013-2014 Computer Sciences Corporation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License. -->
+
+$def with(host, path)
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  <script src="/ezbstatic/components/platform/platform.js" type="text/javascript"></script><link rel="import" href="/ezbstatic/components/classification-banner/classification-banner.html">
+  <meta name="generator" content=
+  "HTML Tidy for Mac OS X (vers 31 October 2006 - Apple Inc. build 15.10), see www.w3.org">
+  <meta charset="utf-8">
+  
+<script type="text/javascript" src="socket.io.js"></script>
+
+  <title>WebSocket Test</title>
+  <script language="javascript" type="text/javascript">
+      var wsUri = "wss://$host/test";
+
+  function init() {
+        socket = io.connect(wsUri,{ 
+                                    resource:'$path/socket.io',
+                                    secure: true,
+                                    port:443
+                                   });
+        socket.on('time_data',function(evt) { onMessage(evt) });
+        socket.on('msg', function(evt) { onRxMessage(evt) });
+  }
+
+  function onMessage(evt) { 
+      writeToScreen('output','<span style="color: blue;">TIME: ' + evt.time+'<\/span>');
+      writeToScreen('ip_add','<span style="color: green;">IP_ADDR: ' + evt.ipaddr+'<\/span>');
+      writeToScreen('DN','<span style="color: blue;">DN: ' + evt.DN+'<\/span>');
+  }
+  
+  function writeToScreen(div, message) {
+      document.getElementById(div).innerHTML = message;
+  } 
+  	 
+  function sendMessage(message) {
+      if(socket){
+          socket.emit('msg',message);
+      }
+  }
+  	 
+  function onRxMessage(evt) {
+      document.getElementById('received_data').value = evt.message;
+  }
+
+  function onTxMessage(evt) {
+      if (window.event.keyCode == 13) {
+          var message  =  document.getElementById('send_data').value;
+          sendMessage(message);
+          document.getElementById('send_data').value = null;
+      }
+  }
+   window.addEventListener("load", init, false);
+</script>
+</head>
+
+<body>
+<classification-banner class="banner-component"></classification-banner><br/>
+<h2>WebSocket Test</h2>
+<div id="output"></div>
+<div id="ip_add"></div>
+<div id="DN"></div>														  
+<div style="width:50%; float:left">
+	<h2>Send Text:</h2>
+	Enter text below and press ENTER/RETURN key to send text. 
+    <br>
+    <br>															 
+    <input size="50" type="text" id="send_data" onkeypress="onTxMessage(event)" />                               
+</div>
+
+<div style="width:50%; float:right">																  
+	 <h2>Received Text:</h2>															  
+	<textarea rows="2" cols=40"  name="receivedata" id="received_data" > </textarea>
+</div>
+
+</body>
+</html>

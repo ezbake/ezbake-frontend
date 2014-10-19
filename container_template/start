@@ -1,0 +1,17 @@
+#!/bin/bash
+
+PIDFILE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )""/pidfile"
+
+setcap 'cap_net_bind_service=+ep' /opt/ezfrontend/app/nginx
+chown -R ezfrontend:ezfrontend /opt/ezfrontend/config
+
+if [ -f app/ezReverseProxy/ezReverseProxy ]; then
+    DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+    EXE="${DIR}/app/ezReverseProxy/ezReverseProxy"
+    runuser -l ezfrontend -c $EXE&
+else
+    SCRIPT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )""/app/ezReverseProxy/ezReverseProxy.py"
+    #sudo /home/mschiller/virtual-environments/testOpt/bin/python $SCRIPT &
+    /opt/virtual-environments/ofe/bin/python $SCRIPT &
+fi
+

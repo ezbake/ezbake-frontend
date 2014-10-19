@@ -1,0 +1,7 @@
+#!/bin/bash
+
+PIDFILE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )""/pidfile"
+
+kill -s TERM `cat $PIDFILE`
+
+rm $PIDFILE

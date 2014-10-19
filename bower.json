@@ -1,0 +1,25 @@
+{
+  "name": "ezReversecomponents",
+  "version": "0.0.1",
+  "authors": [
+    "Jerry Conner <jconner@42six.com>"
+  ],
+  "description": "web components",
+  "keywords": [
+    "web-components",
+    "polymer"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "../",
+    "test",
+    "tests",
+    "bower.json"
+  ],
+  "dependencies": {
+    "banner": "git@???:/banner.git"
+  }
+}

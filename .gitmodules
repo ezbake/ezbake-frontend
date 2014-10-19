@@ -1,0 +1,12 @@
+[submodule "eznginx-ezsecurity-connector/ezbakesecurity-thrift"]
+	path = eznginx-ezsecurity-connector/ezbakesecurity-thrift
+	url = git@???:ezbakesecurity/ezbakesecurity-thrift.git
+[submodule "thrift"]
+	path = thrift
+	url = git@???:ezbakesecurity/thrift.git
+[submodule "eznginx"]
+	path = eznginx
+	url = git@???:ezbakesecurity/eznginx.git
+[submodule "eznginx-ezsecurity-connector/ezbake-base-thrift"]
+	path = eznginx-ezsecurity-connector/ezbake-base-thrift
+	url = git@???:ezbakethrift/ezbake-base-thrift.git

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+PIDFILE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )""/pidfile"
+
+EXE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )""/ezfrontendui/ezfrontendui"
+
+su ezfrontendui -c "nohup $EXE $1&"
+
+echo $$ > $PIDFILE
+
